@@ -1,0 +1,365 @@
+/* ============================================ */
+/* Home Maintenance Dashboard - Custom Styles  */
+/* ============================================ */
+
+/* Global Styles */
+html, body, #content {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* KPI Cards */
+.kpiCard {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 0.5rem;
+    min-width: 200px;
+    min-height: 120px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.kpiCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.kpiCard.kpiCardWarning {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.kpiCard.kpiCardInfo {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.kpiCard.kpiCardSuccess {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.kpiCardHeader {
+    margin-bottom: 1rem;
+}
+
+.kpiCardTitle {
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.kpiCardValue {
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+/* Cost Summary Cards */
+.costCard {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin: 0.5rem;
+    min-width: 250px;
+    max-width: 400px;
+    flex: 1 1 auto;
+    min-height: 100px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border-color: #0a6ed1;
+}
+
+.costCardTitle {
+    font-size: 0.875rem;
+    color: #666;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.costCardValue {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.costEstimated {
+    color: #0a6ed1;
+}
+
+.costActual {
+    color: #e9730c;
+}
+
+.costVariance {
+    color: #107e3e;
+}
+
+/* Table Enhancements */
+.sapMListTbl {
+    width: 100% !important;
+    max-width: 100%;
+    display: table !important;
+    table-layout: fixed;
+}
+
+.sapMListTbl tbody > tr.sapMLIBSelected {
+    background-color: #e3f2fd;
+}
+
+/* Panel Styling */
+.sapMPanel {
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    width: 100% !important;
+    max-width: 100%;
+    box-sizing: border-box;
+    display: block !important;
+    margin-bottom: 1rem;
+}
+
+.sapMPanel .sapMPanelHdr {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 8px 8px 0 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+/* Dialog Styling */
+.sapMDialog .sapMDialogTitle {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-weight: 600;
+}
+
+.sapMDialog .sapMDialogSection {
+    padding: 1.5rem;
+}
+
+/* Button Styling */
+.sapMBtn.sapMBtnEmphasized {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+}
+
+.sapMBtn.sapMBtnEmphasized:hover {
+    background: linear-gradient(135deg, #5568d3 0%, #653a8b 100%);
+}
+
+/* Form Styling */
+.sapUiSimpleForm .sapUiFormResGrid {
+    padding: 0.5rem;
+}
+
+.sapUiSimpleForm .sapMLabel {
+    font-weight: 500;
+    color: #333;
+}
+
+.sapUiSimpleForm .sapMInput,
+.sapUiSimpleForm .sapMTextArea,
+.sapUiSimpleForm .sapMSelect {
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+}
+
+.sapUiSimpleForm .sapMInput:focus,
+.sapUiSimpleForm .sapMTextArea:focus,
+.sapUiSimpleForm .sapMSelect:focus {
+    border-color: #0a6ed1;
+    box-shadow: 0 0 0 2px rgba(10, 110, 209, 0.1);
+}
+
+/* Status and Priority Indicators */
+.sapMObjectStatus.sapMObjectStatusError {
+    background-color: #fef2f2;
+    color: #dc2626;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.sapMObjectStatus.sapMObjectStatusWarning {
+    background-color: #fef9f2;
+    color: #ea580c;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.sapMObjectStatus.sapMObjectStatusSuccess {
+    background-color: #f0fdf4;
+    color: #16a34a;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.sapMObjectStatus.sapMObjectStatusInformation {
+    background-color: #f0f9ff;
+    color: #0284c7;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .kpiCardValue {
+        font-size: 2rem;
+    }
+    
+    .costCardValue {
+        font-size: 1.5rem;
+    }
+    
+    .kpiCard,
+    .costCard {
+        margin: 0.25rem;
+        padding: 1rem;
+    }
+}
+
+/* Search Field Styling */
+.sapMSF {
+    border: 1px solid #d0d0d0;
+    border-radius: 20px;
+}
+
+.sapMSF:focus-within {
+    border-color: #0a6ed1;
+    box-shadow: 0 0 0 2px rgba(10, 110, 209, 0.1);
+}
+
+/* Table Action Buttons */
+.sapMBtn.sapMBtnTransparent {
+    transition: all 0.2s ease;
+}
+
+.sapMBtn.sapMBtnTransparent:hover {
+    background-color: #f5f5f5;
+    transform: scale(1.1);
+}
+
+/* Loading Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.sapMPage {
+    animation: fadeIn 0.5s ease;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Toolbar Styling */
+.sapMTB {
+    background: transparent;
+    border: none;
+}
+
+.sapMTBShrinkItem {
+    margin: 0 0.5rem;
+}
+
+/* Object Number Styling */
+.sapMObjectNumber {
+    font-weight: 600;
+}
+
+.sapMObjectNumberUnit {
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+/* Page Header */
+.sapMPageHeader .sapMTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+}
+
+/* Icon Styling */
+.sapUiIcon {
+    transition: all 0.2s ease;
+}
+
+.sapUiIcon:hover {
+    transform: scale(1.1);
+}
+
+/* Text Emphasis */
+.sapUiSmallText {
+    color: #666;
+    font-size: 0.875rem;
+}
+
+/* Spacing Utilities */
+.sapUiTinyMarginBottom {
+    margin-bottom: 0.25rem !important;
+}
+
+.sapUiSmallMarginBottom {
+    margin-bottom: 0.5rem !important;
+}
+
+.sapUiResponsiveMargin {
+    margin: 1rem !important;
+}
+
+/* Professional Touch */
+* {
+    font-family: "72", "72full", Arial, Helvetica, sans-serif;
+}
+
+.sapMBtn {
+    font-weight: 500;
+    letter-spacing: 0.25px;
+}
+
+/* Print Styles */
+@media print {
+    .sapMPageHeader,
+    .sapMBtn,
+    .kpiCard:hover,
+    .costCard:hover {
+        box-shadow: none;
+    }
+    
+    .sapMPage {
+        animation: none;
+    }
+}

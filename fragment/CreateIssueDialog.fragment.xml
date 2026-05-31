@@ -1,0 +1,101 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form">
+    
+    <Dialog
+        id="createIssueDialog"
+        title="Create New Issue"
+        contentWidth="600px">
+        
+        <content>
+            <f:SimpleForm
+                editable="true"
+                layout="ResponsiveGridLayout"
+                labelSpanXL="4"
+                labelSpanL="4"
+                labelSpanM="4"
+                labelSpanS="12"
+                adjustLabelSpan="false"
+                emptySpanXL="0"
+                emptySpanL="0"
+                emptySpanM="0"
+                emptySpanS="0"
+                columnsXL="1"
+                columnsL="1"
+                columnsM="1"
+                singleContainerFullSize="false">
+                
+                <f:content>
+                    <Label text="Issue ID" required="true"/>
+                    <Input
+                        id="issueIdInput"
+                        enabled="false"
+                        placeholder="Auto-generated"/>
+                    
+                    <Label text="Title" required="true"/>
+                    <Input
+                        id="issueTitleInput"
+                        placeholder="Enter issue title"
+                        maxLength="100"/>
+                    
+                    <Label text="Description" required="true"/>
+                    <TextArea
+                        id="issueDescInput"
+                        placeholder="Enter detailed description"
+                        rows="4"
+                        maxLength="500"/>
+                    
+                    <Label text="Category" required="true"/>
+                    <Select
+                        id="categorySelect"
+                        items="{/categories}">
+                        <core:Item key="{key}" text="{text}"/>
+                    </Select>
+                    
+                    <Label text="Location" required="true"/>
+                    <Select
+                        id="locationSelect"
+                        items="{/locations}">
+                        <core:Item key="{key}" text="{text}"/>
+                    </Select>
+                    
+                    <Label text="Priority" required="true"/>
+                    <Select
+                        id="prioritySelect"
+                        selectedKey="Medium"
+                        items="{/priorities}">
+                        <core:Item key="{key}" text="{text}"/>
+                    </Select>
+                    
+                    <Label text="Status" required="true"/>
+                    <Select
+                        id="statusSelect"
+                        selectedKey="Open"
+                        items="{/statuses}">
+                        <core:Item key="{key}" text="{text}"/>
+                    </Select>
+                    
+                    <Label text="Estimated Cost ($)" required="true"/>
+                    <Input
+                        id="estimatedCostInput"
+                        type="Number"
+                        placeholder="0.00"/>
+                </f:content>
+            </f:SimpleForm>
+        </content>
+        
+        <beginButton>
+            <Button
+                text="Save"
+                type="Emphasized"
+                press=".onSaveIssue"/>
+        </beginButton>
+        
+        <endButton>
+            <Button
+                text="Cancel"
+                press=".onCancelIssueDialog"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,77 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form">
+    
+    <Dialog
+        id="materialEntryDialog"
+        title="Add Material Entry"
+        contentWidth="500px">
+        
+        <content>
+            <f:SimpleForm
+                editable="true"
+                layout="ResponsiveGridLayout"
+                labelSpanXL="4"
+                labelSpanL="4"
+                labelSpanM="4"
+                labelSpanS="12"
+                adjustLabelSpan="false"
+                emptySpanXL="0"
+                emptySpanL="0"
+                emptySpanM="0"
+                emptySpanS="0"
+                columnsXL="1"
+                columnsL="1"
+                columnsM="1"
+                singleContainerFullSize="false">
+                
+                <f:content>
+                    <Label text="Material Name" required="true"/>
+                    <Input
+                        id="materialNameInput"
+                        placeholder="Enter material name"
+                        maxLength="100"/>
+                    
+                    <Label text="Quantity" required="true"/>
+                    <Input
+                        id="materialQuantityInput"
+                        type="Number"
+                        placeholder="0"/>
+                    
+                    <Label text="Unit" required="true"/>
+                    <Input
+                        id="materialUnitInput"
+                        placeholder="e.g., Liters, Pieces, Bags"
+                        maxLength="50"/>
+                    
+                    <Label text="Unit Cost ($)" required="true"/>
+                    <Input
+                        id="materialUnitCostInput"
+                        type="Number"
+                        placeholder="0.00"/>
+                    
+                    <Label text="Date" required="true"/>
+                    <DatePicker
+                        id="materialDatePicker"
+                        displayFormat="yyyy-MM-dd"
+                        valueFormat="yyyy-MM-dd"
+                        placeholder="Select date"/>
+                </f:content>
+            </f:SimpleForm>
+        </content>
+        
+        <beginButton>
+            <Button
+                text="Save"
+                type="Emphasized"
+                press=".onSaveMaterial"/>
+        </beginButton>
+        
+        <endButton>
+            <Button
+                text="Cancel"
+                press=".onCancelMaterialDialog"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,247 @@
+<mvc:View
+    controllerName="app.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    displayBlock="true">
+    
+    <Page
+        id="mainPage"
+        title="Home Maintenance Dashboard"
+        showNavButton="false">
+        
+        <headerContent>
+            <Button
+                id="createIssueBtn"
+                text="Create Issue"
+                type="Emphasized"
+                icon="sap-icon://add"
+                press=".onCreateIssue" />
+        </headerContent>
+        
+        <content>
+            <VBox class="sapUiSmallMargin">
+                
+                <!-- KPI Cards Section -->
+                <HBox wrap="Wrap" class="sapUiSmallMarginBottom">
+                    <!-- Total Issues Card -->
+                    <VBox class="kpiCard">
+                        <HBox justifyContent="SpaceBetween" alignItems="Center" class="kpiCardHeader">
+                            <core:Icon src="sap-icon://tasks" size="2rem" color="#0a6ed1"/>
+                            <Text text="Total Issues" class="kpiCardTitle"/>
+                        </HBox>
+                        <Text text="{/kpis/totalIssues}" class="kpiCardValue"/>
+                    </VBox>
+                    
+                    <!-- Open Issues Card -->
+                    <VBox class="kpiCard kpiCardWarning">
+                        <HBox justifyContent="SpaceBetween" alignItems="Center" class="kpiCardHeader">
+                            <core:Icon src="sap-icon://alert" size="2rem" color="#e9730c"/>
+                            <Text text="Open Issues" class="kpiCardTitle"/>
+                        </HBox>
+                        <Text text="{/kpis/openIssues}" class="kpiCardValue"/>
+                    </VBox>
+                    
+                    <!-- In Progress Card -->
+                    <VBox class="kpiCard kpiCardInfo">
+                        <HBox justifyContent="SpaceBetween" alignItems="Center" class="kpiCardHeader">
+                            <core:Icon src="sap-icon://in-progress" size="2rem" color="#0a6ed1"/>
+                            <Text text="In Progress" class="kpiCardTitle"/>
+                        </HBox>
+                        <Text text="{/kpis/inProgressIssues}" class="kpiCardValue"/>
+                    </VBox>
+                    
+                    <!-- Completed Card -->
+                    <VBox class="kpiCard kpiCardSuccess">
+                        <HBox justifyContent="SpaceBetween" alignItems="Center" class="kpiCardHeader">
+                            <core:Icon src="sap-icon://accept" size="2rem" color="#107e3e"/>
+                            <Text text="Completed" class="kpiCardTitle"/>
+                        </HBox>
+                        <Text text="{/kpis/completedIssues}" class="kpiCardValue"/>
+                    </VBox>
+                </HBox>
+                
+                <!-- Cost Summary Cards -->
+                <!-- <HBox wrap="Wrap" class="sapUiSmallMarginBottom">
+                    <VBox class="costCard">
+                        <Text text="Estimated Cost" class="costCardTitle"/>
+                        <Text text="$ {/kpis/totalEstimatedCost}" class="costCardValue costEstimated"/>
+                    </VBox>
+                    
+                    <VBox class="costCard">
+                        <Text text="Actual Cost" class="costCardTitle"/>
+                        <Text text="$ {/kpis/totalActualCost}" class="costCardValue costActual"/>
+                    </VBox>
+                    
+                    <VBox class="costCard">
+                        <Text text="Variance" class="costCardTitle"/>
+                        <Text text="$ {/kpis/totalVariance}" class="costCardValue costVariance"/>
+                    </VBox>
+                </HBox> -->
+                
+                <!-- Issues Table -->
+                <Panel
+                    headerText="Issues Tasks"
+                    class="sapUiSmallMargin"
+                    width="auto">
+                    
+                    <headerToolbar>
+                        <OverflowToolbar width="100%">
+                            <Title text="Issues Tasks" level="H2"/>
+                            <ToolbarSpacer/>
+                            <SearchField
+                                id="searchField"
+                                width="300px"
+                                placeholder="Search issues..."
+                                search=".onSearch"/>
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    
+                    <content>
+                        <Table
+                            id="issuesTable"
+                            items="{/issues}"
+                            mode="SingleSelectMaster"
+                            selectionChange=".onIssueSelect">
+                            
+                            <columns>
+                                <Column width="8em">
+                                    <Text text="Issue ID"/>
+                                </Column>
+                                <Column width="15em" minScreenWidth="Tablet" demandPopin="true">
+                                    <Text text="Title"/>
+                                </Column>
+                                <Column width="10em" minScreenWidth="Desktop" demandPopin="true">
+                                    <Text text="Category"/>
+                                </Column>
+                                <Column width="10em" minScreenWidth="Desktop" demandPopin="true">
+                                    <Text text="Location"/>
+                                </Column>
+                                <Column width="8em" minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                                    <Text text="Priority"/>
+                                </Column>
+                                <Column width="10em" hAlign="Center">
+                                    <Text text="Status"/>
+                                </Column>
+                                <Column width="10em" minScreenWidth="Desktop" demandPopin="true" hAlign="End">
+                                    <Text text="Est. Cost"/>
+                                </Column>
+                                <Column width="10em" minScreenWidth="Desktop" demandPopin="true" hAlign="End">
+                                    <Text text="Actual Cost"/>
+                                </Column>
+                                <Column width="10em" minScreenWidth="Desktop" demandPopin="true" hAlign="End">
+                                    <Text text="Variance"/>
+                                </Column>
+                                <Column width="12em" hAlign="Center">
+                                    <Text text="Actions"/>
+                                </Column>
+                            </columns>
+                            
+                            <items>
+                                <ColumnListItem vAlign="Middle">
+                                    <cells>
+                                        <ObjectIdentifier
+                                            title="{issue_id}"
+                                            text="{created_date}"/>
+                                        
+                                        <VBox>
+                                            <Text text="{title}" class="sapUiTinyMarginBottom"/>
+                                            <Text text="{description}" class="sapUiSmallText"/>
+                                        </VBox>
+                                        
+                                        <Text text="{category}"/>
+                                        
+                                        <Text text="{location}"/>
+                                        
+                                        <ObjectStatus
+                                            text="{priority}"
+                                            state="{
+                                                path: 'priority',
+                                                formatter: '.formatPriorityState'
+                                            }"/>
+                                        
+                                        <ObjectStatus
+                                            text="{status}"
+                                            state="{
+                                                path: 'status',
+                                                formatter: '.formatStatusState'
+                                            }"/>
+                                        
+                                        <ObjectNumber
+                                            number="{
+                                                path: 'estimated_cost',
+                                                type: 'sap.ui.model.type.Float',
+                                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2
+                                                }
+                                            }"
+                                            unit="$"/>
+                                        
+                                        <ObjectNumber
+                                            number="{
+                                                path: 'actual_total_cost',
+                                                type: 'sap.ui.model.type.Float',
+                                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2
+                                                }
+                                            }"
+                                            unit="$"
+                                            state="{
+                                                path: 'actual_total_cost',
+                                                formatter: '.formatCostState'
+                                            }"/>
+                                        
+                                        <ObjectNumber
+                                            number="{
+                                                path: 'variance',
+                                                type: 'sap.ui.model.type.Float',
+                                                formatOptions: {
+                                                    minFractionDigits: 2,
+                                                    maxFractionDigits: 2
+                                                }
+                                            }"
+                                            unit="$"
+                                            state="{
+                                                path: 'variance',
+                                                formatter: '.formatVarianceState'
+                                            }"/>
+                                        
+                                        <HBox>
+                                            <Button
+                                                icon="sap-icon://edit"
+                                                type="Transparent"
+                                                tooltip="Edit Issue"
+                                                press=".onEditIssue"
+                                                class="sapUiTinyMarginEnd"/>
+                                            <Button
+                                                icon="sap-icon://group"
+                                                type="Transparent"
+                                                tooltip="Add Labour"
+                                                press=".onAddLabour"
+                                                class="sapUiTinyMarginEnd"/>
+                                            <Button
+                                                icon="sap-icon://product"
+                                                type="Transparent"
+                                                tooltip="Add Material"
+                                                press=".onAddMaterial"
+                                                class="sapUiTinyMarginEnd"/>
+                                            <Button
+                                                icon="sap-icon://delete"
+                                                type="Transparent"
+                                                tooltip="Delete Issue"
+                                                press=".onDeleteIssue"/>
+                                        </HBox>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </content>
+                </Panel>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

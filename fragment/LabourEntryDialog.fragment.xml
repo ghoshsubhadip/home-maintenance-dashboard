@@ -1,0 +1,71 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form">
+    
+    <Dialog
+        id="labourEntryDialog"
+        title="Add Labour Entry"
+        contentWidth="500px">
+        
+        <content>
+            <f:SimpleForm
+                editable="true"
+                layout="ResponsiveGridLayout"
+                labelSpanXL="4"
+                labelSpanL="4"
+                labelSpanM="4"
+                labelSpanS="12"
+                adjustLabelSpan="false"
+                emptySpanXL="0"
+                emptySpanL="0"
+                emptySpanM="0"
+                emptySpanS="0"
+                columnsXL="1"
+                columnsL="1"
+                columnsM="1"
+                singleContainerFullSize="false">
+                
+                <f:content>
+                    <Label text="Worker Name" required="true"/>
+                    <Input
+                        id="labourWorkerInput"
+                        placeholder="Enter worker name"
+                        maxLength="100"/>
+                    
+                    <Label text="Hours Worked" required="true"/>
+                    <Input
+                        id="labourHoursInput"
+                        type="Number"
+                        placeholder="0.0"/>
+                    
+                    <Label text="Rate per Hour ($)" required="true"/>
+                    <Input
+                        id="labourRateInput"
+                        type="Number"
+                        placeholder="0.00"/>
+                    
+                    <Label text="Date" required="true"/>
+                    <DatePicker
+                        id="labourDatePicker"
+                        displayFormat="yyyy-MM-dd"
+                        valueFormat="yyyy-MM-dd"
+                        placeholder="Select date"/>
+                </f:content>
+            </f:SimpleForm>
+        </content>
+        
+        <beginButton>
+            <Button
+                text="Save"
+                type="Emphasized"
+                press=".onSaveLabour"/>
+        </beginButton>
+        
+        <endButton>
+            <Button
+                text="Cancel"
+                press=".onCancelLabourDialog"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>
